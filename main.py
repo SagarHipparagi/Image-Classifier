@@ -53,10 +53,12 @@ def main():
                 with st.spinner("Analyzing Image..."):
                      image = Image.open(uploaded_file)
                      predictions = classify_image(model, image)
-                     predictions = classify_image(model, image)
-                     st.subheader("Predictions")
-                     for _, label, score in predictions:
-                         st.write(f"**{label}**: {score:.2%}")
+                     if predictions:
+                         st.subheader("Predictions")
+                         for _, label, score in predictions:
+                             st.write(f"**{label}**: {score:.2%}")
+                     else:
+                         st.error("Failed to classify image. Please try again.")
 
 
 if __name__ == "__main__":
